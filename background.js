@@ -6,7 +6,10 @@ function cleanFeed(active) {
     if (tab.url && (tab.url.includes('://www.linkedin.com/') ||
       tab.url.includes('://linkedin.com/'))) {
       chrome.tabs.insertCSS(active.tabId, { code: cleanupCSS() }, () => {
-        console.log('Cleaned up linkedin feed')
+        console.log('Cleaned up linkedin feed CSS')
+      });
+      chrome.tabs.executeScript(active.tabId, { file: 'clf.js' }, () => {
+        console.log('Cleaned up linkedin feed JS')
       });
     }
   });
